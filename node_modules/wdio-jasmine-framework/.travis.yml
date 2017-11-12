@@ -1,0 +1,15 @@
+language: node_js
+bundler_args: --retry 0
+
+node_js:
+- '6.10'
+
+script:
+  - npm run test:ci
+
+after_success:
+  - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info
+
+env:
+  global:
+  - secure: UuRuufgYC277zTzc7FOd2xGaz3fjZfRxDX9Q8XFDnnxmPtzT784I2bQeKW0rIhohMCK6xrqRxGWpfvZTEOiteDg0Owr0PcrCi4IRpISB+kpLacKWeBHxqAZ9FZ6g8unUXEqiSNllX07oi74MgqkhUDdtkA1vNRGwqSq/f+cO1DHYqsJ2sgjOjcIs3SHrCyhwMvrtGveOejXbYEvxFQ5/Eh5WtUCmPU+wM0Kq91BfyQcQhRGjsCy0nW08r5ld5jen41khfvbrPjn7GxGga+dvU+Vx//1BdqGE5Sf1fPEIWayYHqptugdu8L3hLJy7l3wCXwq+4hLMEY+j7/Iubh25s2fjPNAx8ZSDKGNzMv7x3ofzEdVctBse77p++LvbUittJG8VByw0JemAu2TqMH/3SMSEMMvA7jSLM5qvgvZ9wHuGYJJpEOY/M5uzdNl0W+utNp+jQw/8farVViDhJtRuxUncGgBD4H4oO9prIscxnypvury1vXb4R+7w3OOgX3TfG8rrQnGpgbFKRizuGnBScoVbzXDWYOHco1aY6OMf63+bJd6IomKSRcSlm3NDzTPe0NpV0rtNQdbBje+QhndZ9xGF/DdLfcSLDEPyyBlVR01Yv8GfAOapqwCZIsw4GnBvVX6LqBC+p+fY/19yWX+2cpBX5Ju5pCTaeWbAqsNMpVY=
