@@ -39,9 +39,6 @@ function unleashGremlins(ttl, callback) {
     .distribution([0.5, 0.2, 0.1, 0.1, 0.1]) 
     );
     horde.seed(1234);
-    horde.before(function startProfiler() {
-      console.profile('gremlins');
-    });
     horde.after(callback);
     window.onbeforeunload = stop;
     setTimeout(stop, ttl);
@@ -49,16 +46,21 @@ function unleashGremlins(ttl, callback) {
 }
 
 
-function startProfiler(){
-  var test = browser.element('.email.gh-input.ember-view').getText();
-  console.log('test de control seleccionado:' + test.length);
-  test.click();
-  test.setValue('forerorama@gmail.com')
-}
-
 describe('Monkey testing with gremlins ', function () {
   browser.url('http://localhost:2368/ghost/#/');  
   browser.pause(4000);   
+  beforeAll(function(){
+    var emailInput = browser.element('input[name="identification"]');
+    emailInput.click();
+    emailInput.setValue('forerorama@gmail.com');
+    
+    var password = browser.element('input[name="password"]');
+    password.click();
+    password.setValue('Qwerty12345');
+//$$('button')[0];//
+    browser.element('login.gh-btn.gh-btn-blue.gh-btn-block.gh-btn-icon.ember-view').click();
+  });
+
   it('it should not raise any error', function () {
     browser.pause(4000);
 
